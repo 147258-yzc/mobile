@@ -16,27 +16,35 @@ import android.widget.ImageView;
 import com.yzc.myfragment.PersonalFragment;
 import com.yzc.myfragment.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainFragment extends Fragment {
 
-    private ImageView fg_home;
-    private ImageView fg_category;
-    private ImageView fg_cart;
-    private ImageView fg_personal;
+    @BindView(R.id.fg_home)
+     ImageView fg_home;
+    @BindView(R.id.fg_category)
+     ImageView fg_category;
+    @BindView(R.id.fg_cart)
+     ImageView fg_cart;
+    @BindView(R.id.fg_personal)
+     ImageView fg_personal;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this,view);
         initView(view);
         return view;
 
     }
 
     private void initView(View view) {
-        fg_home = view.findViewById(R.id.fg_home);
+        /*fg_home = view.findViewById(R.id.fg_home);
         fg_category = view.findViewById(R.id.fg_category);
         fg_cart = view.findViewById(R.id.fg_cart);
-        fg_personal = view.findViewById(R.id.fg_personal);
+        fg_personal = view.findViewById(R.id.fg_personal);*/
 
         resetImageResource(fg_home);
         showFragment(fg_home);

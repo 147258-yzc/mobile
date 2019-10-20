@@ -9,35 +9,51 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-
-
 import com.yzc.myfragment.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AdActivity extends AppCompatActivity {
 
+    @BindView(R.id.tv_count)
     TextView tv_count;
-    boolean isstop=false;
+
+    boolean isstop = false;
     Thread thread;
 
-    Handler handler=new Handler();
+    Handler handler = new Handler();
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad);
 
-        tv_count=findViewById(R.id.tv_count);
+        ButterKnife.bind(this);
+
         tv_count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (thread!=null){
+                if (thread != null) {
                     thread.stop();
                 }
-                isstop=true;
-                Intent intent=new Intent(AdActivity.this,MainActivity.class);
+                isstop = true;
+                Intent intent = new Intent(AdActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+       /* tv_count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handler.removeCallbacks(task);
+                Intent intent=new Intent(AdActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });*/
 
 
         /*new Thread(){
@@ -47,41 +63,45 @@ public class AdActivity extends AppCompatActivity {
             }
         }.start();
         */
-         new Thread(new Runnable() {
-             @Override
-             public void run() {
-                 for (int i=5;i>=0;i--){
-                     if (isstop){
-                         return;
-                     }
-                     SystemClock.sleep(1000);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 5; i >= 0; i--) {
+                    if (isstop) {
+                        return;
+                    }
+                    SystemClock.sleep(1000);
 
-                     final int count=i;
+                    final int count = i;
                      /*runOnUiThread(new Runnable() {
                          @Override
                          public void run() {
                              tv_count.setText("点击跳转 "+count);
                          }
                      });*/
-                     handler.post(new Runnable() {
-                         @Override
-                         public void run() {
-                             tv_count.setText("点击跳转 "+count);
-                         }
-                     });
-                 }
-                 runOnUiThread(new Runnable() {
-                     @Override
-                     public void run() {
-                         Intent intent=new Intent(AdActivity.this,MainActivity.class);
-                         startActivity(intent);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv_count.setText("点击跳转 " + count);
+                        }
+                    });
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(AdActivity.this, MainActivity.class);
+                        startActivity(intent);
 
-                         finish();
-                     }
-                 });
-             }
-         }).start();
+                        finish();
+                    }
+                });
+            }
+        }).start();
 
 
+    }
+
+    @OnClick(R.id.tv_count)
+    public void onViewClicked() {
     }
 }
