@@ -56,5 +56,6 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
+        webView.loadUrl("https://www.apple.com/");
     }
 }
