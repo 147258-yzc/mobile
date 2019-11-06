@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         final String username=et_username.getText().toString();
         final String pwd=et_pwd.getText().toString();
 
-        String url="10.10.16.65:8089/MobileShop/member/login2";
+        String url="http://169.254.138.146:8088/MobileShop/member/login2";
 
 
         /*new Thread(){

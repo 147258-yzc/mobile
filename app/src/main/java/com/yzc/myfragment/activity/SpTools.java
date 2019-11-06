@@ -22,6 +22,7 @@ public class SpTools {
     public static void setLong(String key,long defValue){
         SharedPreferences.Editor edit = getEdit();
         edit.putLong(key,defValue);
+        edit.apply();
     }
     public static long getLong(String key,long defValue){
         SharedPreferences sharedPreferences = getSharedPreferences();
@@ -30,6 +31,7 @@ public class SpTools {
     public static void setBoolean(String key,boolean defValue){
         SharedPreferences.Editor edit = getEdit();
         edit.putBoolean(key,defValue);
+        edit.apply();
     }
     public static boolean getBoolean(String key,boolean defValue){
         SharedPreferences sharedPreferences =getSharedPreferences();
@@ -39,6 +41,7 @@ public class SpTools {
     public static void setInt(String key,int defValue){
         SharedPreferences.Editor edit =getEdit();
         edit.putInt(key,defValue);
+        edit.apply();
     }
 
     public static int getInt(String key,int defValue){
@@ -49,6 +52,7 @@ public class SpTools {
     public static void setFloat(String key,float defValue){
         SharedPreferences.Editor edit =getEdit();
         edit.putFloat(key,defValue);
+        edit.apply();
     }
 
     public static float getFloat(String key,float defValue){
@@ -56,13 +60,11 @@ public class SpTools {
         return sharedPreferences.getFloat(key,defValue);
     }
     public static SharedPreferences getSharedPreferences(){
-        SharedPreferences my_sp =getContext().getSharedPreferences(SPNAME, Context.MODE_PRIVATE);
+        SharedPreferences my_sp =MyApp.getContext().getSharedPreferences(SPNAME, Context.MODE_PRIVATE);
         return  my_sp;
     }
 
-    private static Context getContext() {
-        return null;
-    }
+
 
     public static SharedPreferences.Editor getEdit(){
         SharedPreferences my_sp = getSharedPreferences();
