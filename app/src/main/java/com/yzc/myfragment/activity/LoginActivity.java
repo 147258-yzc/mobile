@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yzc.myfragment.R;
 import com.yzc.myfragment.bean.LoginResponse;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -50,12 +52,38 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run() {
                 super.run();*/
-        OkHttpClient httpClient=new OkHttpClient.Builder().build();
+        OkHttpUtils
+                .post()
+                .url(url)
+                .addParams("input",username)
+                .addParams("password",pwd)
+                .build()
+                .execute(new StringCallback(){
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        //失败
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Gson gson = new Gson();
+                        LoginResponse response1 = gson.fromJson(response, LoginResponse.class);
+                        if (response1.getStatus()==0){
+                            Toast.makeText(LoginActivity.this,"登陆成功",Toast.LENGTH_SHORT).show();
+                            SpTools.setBoolean("isLogni",true);
+                            finish();
+                        }else {
+                            Toast.makeText(LoginActivity.this,response1.getStatus(),Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+      /*  OkHttpClient httpClient=new OkHttpClient.Builder().build();
         FormBody body=new FormBody.Builder()
                 .add("input",username)
                 .add("password",pwd)
                 .build();
-        Request request = new Request.Builder().url(url).post(body).build();
+        Request request = new Request.Builder().url(url).post(body).build();*/
                /* OkHttpClient httpClient=new OkHttpClient();
                 Request request = new Request
                         .Builder()
@@ -63,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                         .get()
                         .build();*/
 
-        httpClient.newCall(request).enqueue(new Callback() {
+       /* httpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
 
@@ -95,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
                /* try {
                     Response response=httpClient.newCall(request).execute();
                     Log.d("Response",response.body().string());
