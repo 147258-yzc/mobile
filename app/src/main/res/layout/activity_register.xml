@@ -112,8 +112,7 @@
             android:layout_height="match_parent" />
     </LinearLayout>
     <TextView
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+       
         android:layout_marginTop="10dp"
         android:text="注册"
         android:gravity="center"
