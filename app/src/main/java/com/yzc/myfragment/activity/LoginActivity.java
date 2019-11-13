@@ -1,5 +1,6 @@
 package com.yzc.myfragment.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+    }
+    @OnClick(R.id.iv_back)
+    void back(){
+        finish();
+    }
+    @OnClick(R.id.zc_login)
+    void login1(){
+        Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+        startActivity(intent);
     }
     @OnClick(R.id.bt_login)
     void login(){

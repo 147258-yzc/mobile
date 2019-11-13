@@ -38,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
+            android:id="@+id/zc_uname"
             android:hint="用户名"
             android:textColorHint="#cacaca"
             android:background="#ffffffff"
@@ -60,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
+            android:id="@+id/zc_email"
             android:hint="邮箱"
             android:textColorHint="#cacaca"
             android:background="#ffffffff"
@@ -82,6 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
+            android:inputType="textPassword"
+            android:id="@+id/zc_password"
             android:hint="请输入密码"
             android:textColorHint="#cacaca"
             android:background="#ffffffff"
@@ -104,6 +108,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
+            android:inputType="textPassword"
+            android:id="@+id/zc_password2"
             android:hint="请输入密码"
             android:textColorHint="#cacaca"
             android:background="#ffffffff"
@@ -112,7 +118,7 @@
             android:layout_height="match_parent" />
     </LinearLayout>
     <TextView
-
+        android:id="@+id/zc_register"
         android:layout_marginTop="10dp"
         android:text="注册"
         android:gravity="center"
