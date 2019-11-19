@@ -20,6 +20,9 @@ public class AdActivity extends AppCompatActivity {
     @BindView(R.id.tv_count)
     TextView tv_count;
 
+
+
+
     boolean isstop = false;
     Thread thread;
 
